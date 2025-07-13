@@ -1,12 +1,20 @@
 import 'dart:async';
 
-void main() async {
-  final stream = Stream.periodic(
-    Duration(seconds: 1),
-    (index) => index + 1,
-  ).take(10);
+void main() {
+  final controller = StreamController<String>();
 
-  await for (final value in stream) {
-    print('$value...');
-  }
+  controller.sink.add("Hello");
+  controller.sink.add("World");
+  controller.sink.add("Dart");
+
+  controller.stream.listen(
+    (value) {
+      print(value);
+    },
+    onDone: () {
+      print("Стрім завершено");
+    },
+  );
+
+  controller.close();
 }
