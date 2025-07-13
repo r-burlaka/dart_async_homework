@@ -1,4 +1,5 @@
-void main() async {
+void main() async { 
+  var paralelno = await Future.wait ([fetchName(), fetchAge()]);
   final stopwatch = Stopwatch();
   stopwatch.start(); 
   String myName = await fetchName();
